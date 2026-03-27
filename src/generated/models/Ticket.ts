@@ -37,22 +37,28 @@ export type TicketSumAggregateOutputType = {
 export type TicketMinAggregateOutputType = {
   id: number | null
   codigo: string | null
+  tipo: $Enums.Tipo | null
   dataEmissao: Date | null
   dataChamada: Date | null
+  status: $Enums.Status | null
 }
 
 export type TicketMaxAggregateOutputType = {
   id: number | null
   codigo: string | null
+  tipo: $Enums.Tipo | null
   dataEmissao: Date | null
   dataChamada: Date | null
+  status: $Enums.Status | null
 }
 
 export type TicketCountAggregateOutputType = {
   id: number
   codigo: number
+  tipo: number
   dataEmissao: number
   dataChamada: number
+  status: number
   _all: number
 }
 
@@ -68,22 +74,28 @@ export type TicketSumAggregateInputType = {
 export type TicketMinAggregateInputType = {
   id?: true
   codigo?: true
+  tipo?: true
   dataEmissao?: true
   dataChamada?: true
+  status?: true
 }
 
 export type TicketMaxAggregateInputType = {
   id?: true
   codigo?: true
+  tipo?: true
   dataEmissao?: true
   dataChamada?: true
+  status?: true
 }
 
 export type TicketCountAggregateInputType = {
   id?: true
   codigo?: true
+  tipo?: true
   dataEmissao?: true
   dataChamada?: true
+  status?: true
   _all?: true
 }
 
@@ -176,8 +188,10 @@ export type TicketGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type TicketGroupByOutputType = {
   id: number
   codigo: string
+  tipo: $Enums.Tipo
   dataEmissao: Date
   dataChamada: Date | null
+  status: $Enums.Status
   _count: TicketCountAggregateOutputType | null
   _avg: TicketAvgAggregateOutputType | null
   _sum: TicketSumAggregateOutputType | null
@@ -206,15 +220,19 @@ export type TicketWhereInput = {
   NOT?: Prisma.TicketWhereInput | Prisma.TicketWhereInput[]
   id?: Prisma.IntFilter<"Ticket"> | number
   codigo?: Prisma.StringFilter<"Ticket"> | string
+  tipo?: Prisma.EnumTipoFilter<"Ticket"> | $Enums.Tipo
   dataEmissao?: Prisma.DateTimeFilter<"Ticket"> | Date | string
   dataChamada?: Prisma.DateTimeNullableFilter<"Ticket"> | Date | string | null
+  status?: Prisma.EnumStatusFilter<"Ticket"> | $Enums.Status
 }
 
 export type TicketOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   dataEmissao?: Prisma.SortOrder
   dataChamada?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   _relevance?: Prisma.TicketOrderByRelevanceInput
 }
 
@@ -224,15 +242,19 @@ export type TicketWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.TicketWhereInput[]
   NOT?: Prisma.TicketWhereInput | Prisma.TicketWhereInput[]
   codigo?: Prisma.StringFilter<"Ticket"> | string
+  tipo?: Prisma.EnumTipoFilter<"Ticket"> | $Enums.Tipo
   dataEmissao?: Prisma.DateTimeFilter<"Ticket"> | Date | string
   dataChamada?: Prisma.DateTimeNullableFilter<"Ticket"> | Date | string | null
+  status?: Prisma.EnumStatusFilter<"Ticket"> | $Enums.Status
 }, "id">
 
 export type TicketOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   dataEmissao?: Prisma.SortOrder
   dataChamada?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   _count?: Prisma.TicketCountOrderByAggregateInput
   _avg?: Prisma.TicketAvgOrderByAggregateInput
   _max?: Prisma.TicketMaxOrderByAggregateInput
@@ -246,54 +268,70 @@ export type TicketScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TicketScalarWhereWithAggregatesInput | Prisma.TicketScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Ticket"> | number
   codigo?: Prisma.StringWithAggregatesFilter<"Ticket"> | string
+  tipo?: Prisma.EnumTipoWithAggregatesFilter<"Ticket"> | $Enums.Tipo
   dataEmissao?: Prisma.DateTimeWithAggregatesFilter<"Ticket"> | Date | string
   dataChamada?: Prisma.DateTimeNullableWithAggregatesFilter<"Ticket"> | Date | string | null
+  status?: Prisma.EnumStatusWithAggregatesFilter<"Ticket"> | $Enums.Status
 }
 
 export type TicketCreateInput = {
   codigo: string
+  tipo: $Enums.Tipo
   dataEmissao: Date | string
   dataChamada?: Date | string | null
+  status: $Enums.Status
 }
 
 export type TicketUncheckedCreateInput = {
   id?: number
   codigo: string
+  tipo: $Enums.Tipo
   dataEmissao: Date | string
   dataChamada?: Date | string | null
+  status: $Enums.Status
 }
 
 export type TicketUpdateInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoFieldUpdateOperationsInput | $Enums.Tipo
   dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataChamada?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 export type TicketUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoFieldUpdateOperationsInput | $Enums.Tipo
   dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataChamada?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 export type TicketCreateManyInput = {
   id?: number
   codigo: string
+  tipo: $Enums.Tipo
   dataEmissao: Date | string
   dataChamada?: Date | string | null
+  status: $Enums.Status
 }
 
 export type TicketUpdateManyMutationInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoFieldUpdateOperationsInput | $Enums.Tipo
   dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataChamada?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 export type TicketUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoFieldUpdateOperationsInput | $Enums.Tipo
   dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataChamada?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 export type TicketOrderByRelevanceInput = {
@@ -305,8 +343,10 @@ export type TicketOrderByRelevanceInput = {
 export type TicketCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   dataEmissao?: Prisma.SortOrder
   dataChamada?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type TicketAvgOrderByAggregateInput = {
@@ -316,15 +356,19 @@ export type TicketAvgOrderByAggregateInput = {
 export type TicketMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   dataEmissao?: Prisma.SortOrder
   dataChamada?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type TicketMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   dataEmissao?: Prisma.SortOrder
   dataChamada?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type TicketSumOrderByAggregateInput = {
@@ -335,12 +379,20 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
+export type EnumTipoFieldUpdateOperationsInput = {
+  set?: $Enums.Tipo
+}
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type EnumStatusFieldUpdateOperationsInput = {
+  set?: $Enums.Status
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -356,8 +408,10 @@ export type IntFieldUpdateOperationsInput = {
 export type TicketSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   codigo?: boolean
+  tipo?: boolean
   dataEmissao?: boolean
   dataChamada?: boolean
+  status?: boolean
 }, ExtArgs["result"]["ticket"]>
 
 
@@ -365,11 +419,13 @@ export type TicketSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type TicketSelectScalar = {
   id?: boolean
   codigo?: boolean
+  tipo?: boolean
   dataEmissao?: boolean
   dataChamada?: boolean
+  status?: boolean
 }
 
-export type TicketOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "dataEmissao" | "dataChamada", ExtArgs["result"]["ticket"]>
+export type TicketOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "tipo" | "dataEmissao" | "dataChamada" | "status", ExtArgs["result"]["ticket"]>
 
 export type $TicketPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Ticket"
@@ -377,8 +433,10 @@ export type $TicketPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     codigo: string
+    tipo: $Enums.Tipo
     dataEmissao: Date
     dataChamada: Date | null
+    status: $Enums.Status
   }, ExtArgs["result"]["ticket"]>
   composites: {}
 }
@@ -750,8 +808,10 @@ export interface Prisma__TicketClient<T, Null = never, ExtArgs extends runtime.T
 export interface TicketFieldRefs {
   readonly id: Prisma.FieldRef<"Ticket", 'Int'>
   readonly codigo: Prisma.FieldRef<"Ticket", 'String'>
+  readonly tipo: Prisma.FieldRef<"Ticket", 'Tipo'>
   readonly dataEmissao: Prisma.FieldRef<"Ticket", 'DateTime'>
   readonly dataChamada: Prisma.FieldRef<"Ticket", 'DateTime'>
+  readonly status: Prisma.FieldRef<"Ticket", 'Status'>
 }
     
 

@@ -51,7 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Ticket: 'Ticket'
+  Ticket: 'Ticket',
+  Guiche: 'Guiche',
+  Atendimento: 'Atendimento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -73,11 +75,33 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const TicketScalarFieldEnum = {
   id: 'id',
   codigo: 'codigo',
+  tipo: 'tipo',
   dataEmissao: 'dataEmissao',
-  dataChamada: 'dataChamada'
+  dataChamada: 'dataChamada',
+  status: 'status'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const GuicheScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  ativo: 'ativo'
+} as const
+
+export type GuicheScalarFieldEnum = (typeof GuicheScalarFieldEnum)[keyof typeof GuicheScalarFieldEnum]
+
+
+export const AtendimentoScalarFieldEnum = {
+  id: 'id',
+  dataInicio: 'dataInicio',
+  dataFim: 'dataFim',
+  tempoPrevisto: 'tempoPrevisto',
+  tempoReal: 'tempoReal'
+} as const
+
+export type AtendimentoScalarFieldEnum = (typeof AtendimentoScalarFieldEnum)[keyof typeof AtendimentoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -101,4 +125,11 @@ export const TicketOrderByRelevanceFieldEnum = {
 } as const
 
 export type TicketOrderByRelevanceFieldEnum = (typeof TicketOrderByRelevanceFieldEnum)[keyof typeof TicketOrderByRelevanceFieldEnum]
+
+
+export const GuicheOrderByRelevanceFieldEnum = {
+  nome: 'nome'
+} as const
+
+export type GuicheOrderByRelevanceFieldEnum = (typeof GuicheOrderByRelevanceFieldEnum)[keyof typeof GuicheOrderByRelevanceFieldEnum]
 

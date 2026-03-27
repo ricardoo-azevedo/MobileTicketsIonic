@@ -384,7 +384,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Ticket: 'Ticket'
+  Ticket: 'Ticket',
+  Guiche: 'Guiche',
+  Atendimento: 'Atendimento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "ticket"
+    modelProps: "ticket" | "guiche" | "atendimento"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -470,6 +472,138 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Guiche: {
+      payload: Prisma.$GuichePayload<ExtArgs>
+      fields: Prisma.GuicheFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GuicheFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GuicheFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload>
+        }
+        findFirst: {
+          args: Prisma.GuicheFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GuicheFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload>
+        }
+        findMany: {
+          args: Prisma.GuicheFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload>[]
+        }
+        create: {
+          args: Prisma.GuicheCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload>
+        }
+        createMany: {
+          args: Prisma.GuicheCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.GuicheDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload>
+        }
+        update: {
+          args: Prisma.GuicheUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload>
+        }
+        deleteMany: {
+          args: Prisma.GuicheDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GuicheUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.GuicheUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuichePayload>
+        }
+        aggregate: {
+          args: Prisma.GuicheAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGuiche>
+        }
+        groupBy: {
+          args: Prisma.GuicheGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuicheGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GuicheCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuicheCountAggregateOutputType> | number
+        }
+      }
+    }
+    Atendimento: {
+      payload: Prisma.$AtendimentoPayload<ExtArgs>
+      fields: Prisma.AtendimentoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AtendimentoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AtendimentoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+        }
+        findFirst: {
+          args: Prisma.AtendimentoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AtendimentoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+        }
+        findMany: {
+          args: Prisma.AtendimentoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload>[]
+        }
+        create: {
+          args: Prisma.AtendimentoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+        }
+        createMany: {
+          args: Prisma.AtendimentoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AtendimentoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+        }
+        update: {
+          args: Prisma.AtendimentoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+        }
+        deleteMany: {
+          args: Prisma.AtendimentoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AtendimentoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AtendimentoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+        }
+        aggregate: {
+          args: Prisma.AtendimentoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAtendimento>
+        }
+        groupBy: {
+          args: Prisma.AtendimentoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AtendimentoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AtendimentoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AtendimentoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -512,11 +646,33 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const TicketScalarFieldEnum = {
   id: 'id',
   codigo: 'codigo',
+  tipo: 'tipo',
   dataEmissao: 'dataEmissao',
-  dataChamada: 'dataChamada'
+  dataChamada: 'dataChamada',
+  status: 'status'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const GuicheScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  ativo: 'ativo'
+} as const
+
+export type GuicheScalarFieldEnum = (typeof GuicheScalarFieldEnum)[keyof typeof GuicheScalarFieldEnum]
+
+
+export const AtendimentoScalarFieldEnum = {
+  id: 'id',
+  dataInicio: 'dataInicio',
+  dataFim: 'dataFim',
+  tempoPrevisto: 'tempoPrevisto',
+  tempoReal: 'tempoReal'
+} as const
+
+export type AtendimentoScalarFieldEnum = (typeof AtendimentoScalarFieldEnum)[keyof typeof AtendimentoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -542,6 +698,13 @@ export const TicketOrderByRelevanceFieldEnum = {
 export type TicketOrderByRelevanceFieldEnum = (typeof TicketOrderByRelevanceFieldEnum)[keyof typeof TicketOrderByRelevanceFieldEnum]
 
 
+export const GuicheOrderByRelevanceFieldEnum = {
+  nome: 'nome'
+} as const
+
+export type GuicheOrderByRelevanceFieldEnum = (typeof GuicheOrderByRelevanceFieldEnum)[keyof typeof GuicheOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -563,9 +726,30 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
 
 
 /**
+ * Reference to a field of type 'Tipo'
+ */
+export type EnumTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Tipo'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'Status'
+ */
+export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -671,6 +855,8 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   ticket?: Prisma.TicketOmit
+  guiche?: Prisma.GuicheOmit
+  atendimento?: Prisma.AtendimentoOmit
 }
 
 /* Types for Logging */

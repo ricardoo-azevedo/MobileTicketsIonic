@@ -44,3 +44,13 @@ export { Prisma }
  * 
  */
 export type Ticket = Prisma.TicketModel
+/**
+ * Model Guiche
+ * 
+ */
+export type Guiche = Prisma.GuicheModel
+/**
+ * Model Atendimento
+ * 
+ */
+export type Atendimento = Prisma.AtendimentoModel
