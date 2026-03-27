@@ -9,11 +9,44 @@ generator client {
 
 
 model Ticket {
-  id                Int       @id @default(autoincrement())
-  codigo            String
-  // tipo              Tipo
-  dataEmissao       DateTime
-  dataChamada       DateTime?
+  id          Int         @id @default(autoincrement())
+  codigo      String
+  tipo        Tipo
+  dataEmissao DateTime
+  dataChamada DateTime?
+  status      Status
+  // atendimento Atendimento?
 }
 
+model Guiche {
+  id           Int          @id @default(autoincrement())
+  nome         String
+  ativo        Boolean        @default(true)
+  // atendimentos Atendimento[]
+}
+
+model Atendimento {
+  id           Int      @id @default(autoincrement())
+  // ticket       Ticket    @relation(fields: [ticketId], references: [id])
+  // ticketId     Int
+  // guiche       Guiche    @relation(fields: [guicheId], references: [id])
+  // guicheId     Int
+  dataInicio   DateTime
+  dataFim      DateTime?
+  tempoPrevisto Int
+  tempoReal     Int?
+}
+
+
+enum Tipo {
+  SP
+  SG
+  SE
+}
+
+enum Status {
+  EMITIDO
+  ATENDIDO
+  DESCARTADO
+}
 
