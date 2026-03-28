@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
 class GuicheRepository {
-
-
   async create(data) {
     return prisma.guiche.create({ data });
   }
@@ -22,4 +20,4 @@ class GuicheRepository {
   }
 }
 
-export default new GuicheRepository();
+module.exports = new GuicheRepository();

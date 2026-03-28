@@ -1,22 +1,21 @@
-import { create, findAll, update, findById } from '../repositories/guicheRepository';
+const guicheRepository = require('../repositories/guicheRepository');
 
 class GuicheService {
-
   async criarGuiche(nome) {
-    return create({ nome, ativo: true });
+    return guicheRepository.create({ nome, ativo: true });
   }
 
   async listarGuiches() {
-    return findAll();
+    return guicheRepository.findAll();
   }
 
   async atualizarGuiche(id, data) {
-    return update(id, data);
+    return guicheRepository.update(id, data);
   }
 
   async buscarPorId(id) {
-    return findById(id);
+    return guicheRepository.findById(id);
   }
 }
 
-export default new GuicheService();
+module.exports = new GuicheService();
