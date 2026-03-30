@@ -7,3 +7,7 @@ frontend-MobileTickets/.env
 
 backend-MobileTickets/node_modules
 frontend-MobileTickets/node_modules
+frontend-MobileTickets/frontend-MobileTickets/node_modules
+
+
+frontend-MobileTickets/frontend-MobileTickets/node_modules
