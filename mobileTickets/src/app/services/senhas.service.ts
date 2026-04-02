@@ -9,10 +9,12 @@ export class SenhasService {
   filaSE: any[] = [];
 
   painel: any[] = [];
+  logHistorico: any[] = [];
   atendidas: any[] = [];
   todasSenhas: any[] = [];
 
   ultimaChamada: string = '';
+  alternar = true;
 
   contadorSP = 0;
   contadorSG = 0;
@@ -20,27 +22,14 @@ export class SenhasService {
 
   novaSenha(tipo: string) {
     const now = new Date();
-
     const YY = now.getFullYear().toString().slice(-2);
     const MM = (now.getMonth() + 1).toString().padStart(2, '0');
     const DD = now.getDate().toString().padStart(2, '0');
 
     let sequencia = 0;
-
-    if (tipo === 'SP') {
-      this.contadorSP++;
-      sequencia = this.contadorSP;
-    }
-
-    if (tipo === 'SG') {
-      this.contadorSG++;
-      sequencia = this.contadorSG;
-    }
-
-    if (tipo === 'SE') {
-      this.contadorSE++;
-      sequencia = this.contadorSE;
-    }
+    if (tipo === 'SP') sequencia = ++this.contadorSP;
+    if (tipo === 'SG') sequencia = ++this.contadorSG;
+    if (tipo === 'SE') sequencia = ++this.contadorSE;
 
     const codigo = `${YY}${MM}${DD}-${tipo}${sequencia.toString().padStart(3, '0')}`;
 
@@ -58,30 +47,21 @@ export class SenhasService {
 
     this.todasSenhas.push(senha);
   }
-  alternar = true;
+
   chamarProximo(guiche: number) {
     let senha: any = null;
 
     if (this.ultimaChamada === 'SP') {
       if (this.alternar) {
-        if (this.filaSE.length > 0) {
-          senha = this.filaSE.shift();
-        } else if (this.filaSG.length > 0) {
-          senha = this.filaSG.shift();
-        }
+        if (this.filaSE.length > 0) senha = this.filaSE.shift();
+        else if (this.filaSG.length > 0) senha = this.filaSG.shift();
       } else {
-        if (this.filaSG.length > 0) {
-          senha = this.filaSG.shift();
-        } else if (this.filaSE.length > 0) {
-          senha = this.filaSE.shift();
-        }
+        if (this.filaSG.length > 0) senha = this.filaSG.shift();
+        else if (this.filaSE.length > 0) senha = this.filaSE.shift();
       }
-
       this.alternar = !this.alternar;
     } else {
-      if (this.filaSP.length > 0) {
-        senha = this.filaSP.shift();
-      }
+      if (this.filaSP.length > 0) senha = this.filaSP.shift();
     }
 
     if (!senha) {
@@ -102,49 +82,11 @@ export class SenhasService {
     this.painel.unshift(senha);
     if (this.painel.length > 5) this.painel.pop();
 
+    // histórico real infinito
+    this.logHistorico.unshift(senha);
+
     this.ultimaChamada = senha.tipo;
   }
-
-  // chamarProximo(guiche: number) {
-  // let senha: any = null;
-  //
-  // if (this.ultimaChamada === 'SP') {
-  //   if (this.filaSE.length > 0) {
-  //     senha = this.filaSE.shift();
-  //   } else if (this.filaSG.length > 0) {
-  //     senha = this.filaSG.shift();
-  //   }
-  // } else {
-  //   if (this.filaSP.length > 0) {
-  //     senha = this.filaSP.shift();
-  //   }
-  // }
-  //
-  // if (!senha) {
-  //   if (this.filaSE.length > 0) senha = this.filaSE.shift();
-  //   else if (this.filaSG.length > 0) senha = this.filaSG.shift();
-  //   else if (this.filaSP.length > 0) senha = this.filaSP.shift();
-  // }
-  //
-  // if (!senha) return;
-  //
-  // // 5% não atendidas
-  // if (Math.random() < 0.05) return;
-  //
-  // senha.horaAtendimento = new Date();
-  // senha.guiche = guiche;
-  //
-  // this.atendidas.push(senha);
-  //
-  // this.painel.unshift(senha);
-  // if (this.painel.length > 5) {
-  //   this.painel.pop();
-  // }
-  //
-  // this.ultimaChamada = senha.tipo;
-  //
-
-  // }
 
   getRelatorio() {
     return {

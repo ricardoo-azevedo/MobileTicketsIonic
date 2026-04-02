@@ -6,14 +6,10 @@
 
 <ion-content class="ion-padding">
 
-  <!-- PAINEL -->
   <ion-card>
     <ion-card-header>
-      <ion-title>Últimas Chamadas</ion-title>
+      <ion-title>Últimas Chamadas (Painel)</ion-title>
     </ion-card-header>
-
-<!-- eu preciso que alguem transforme essa  essas ultimas 5 chamadas em um log mesmo, tipo um hisotrico real, to tentando fazer com auxilio de ia mas ela ja cansou tadinha-->
-
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let s of service.painel">
@@ -23,12 +19,23 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- RELATÓRIO -->
+  <ion-card>
+    <ion-card-header>
+      <ion-title>Histórico de Chamadas</ion-title>
+    </ion-card-header>
+    <ion-card-content style="max-height: 300px; overflow-y: auto;">
+      <ion-list>
+        <ion-item *ngFor="let s of service.logHistorico">
+          {{ s.codigo }} - Guichê {{ s.guiche }} - Tipo {{ s.tipo }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card>
     <ion-card-header>
       <ion-title>Relatório</ion-title>
     </ion-card-header>
-
     <ion-card-content>
       <ion-item>Total: {{ service.getRelatorio().total }}</ion-item>
       <ion-item>Atendidas: {{ service.getRelatorio().atendidas }}</ion-item>
@@ -39,3 +46,7 @@
   </ion-card>
 
 </ion-content>
+
+
+
+
