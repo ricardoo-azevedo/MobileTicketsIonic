@@ -1,4 +1,12 @@
-# MobileTicketsIonic
+# API em Express
+
+Essa branch contém uma API utilizando Express.
+Em certo momento deixou de fazer parte da versão principal do projeto.
+
+Status:
+- Não integrada ao projeto principal
+
+# Modelagem
 
 ```mermaid
 erDiagram
