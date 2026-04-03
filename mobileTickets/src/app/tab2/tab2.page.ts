@@ -11,9 +11,19 @@ import { SenhasService } from '../services/senhas.service';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class Tab2Page {
+guiche = 1;
+ultimaChamada = '';
 
-  guiche = 1;
+constructor(public service : SenhasService) {}
 
-  constructor(public service: SenhasService) {}
+chamarSenha() {
+  this.service.chamarProximo(this.guiche);
 
+if (this.service.painel.length > 0) {
+  const chamada = this.service.painel [0];
+  this.ultimaChamada = `${chamada.codigo} - Guichê ${chamada.guiche}`;
+}else {
+  this.ultimaChamada = 'Nenhuma senha disponível';
+}
+}
 }
