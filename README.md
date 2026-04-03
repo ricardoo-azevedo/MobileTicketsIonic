@@ -1,3 +1,54 @@
+# API em Spring (Experimento)
+
+Essa branch contém uma versão alternativa da API utilizando Spring Boot.
+Não faz parte da versão principal do projeto.
+
+Objetivo:
+- Explorar Java + Spring
+- Comparar com a versão em Express
+- Servir como estudo pessoal
+
+Status:
+- Não integrada ao projeto principal
+
+# Modelagem:
+
+```mermaid
+erDiagram
+
+    TICKETS {
+        int id PK
+        string codigo
+        enum tipo
+        datetime data_emissao
+        datetime data_chamada
+        enum status
+    }
+
+    GUICHES {
+        int id PK
+        string nome
+        boolean ativo
+    }
+
+    ATENDIMENTOS {
+        int id PK
+        int ticket_id FK
+        int guiche_id FK
+        datetime data_inicio
+        datetime data_fim
+        int tempo_previsto
+        int tempo_real
+    }
+
+    TICKETS ||--o| ATENDIMENTOS : "1 ticket gera 0 ou 1 atendimento"
+    GUICHES ||--o{ ATENDIMENTOS : "1 guichê realiza 0..N atendimentos"
+
+
+
+
+```
+
 # MobileTicketsIonic
 ### 
 SISTEMA DE CONTROLE DE ATENDIMENTO
