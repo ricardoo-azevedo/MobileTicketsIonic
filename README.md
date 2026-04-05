@@ -1,8 +1,8 @@
-[Ir para integrantes do projeto](#integrantes-do-projeto)
+[Ir para integrantes do projeto com matrícula](#integrantes-do-projeto)
 
 ---
 
-# Sistema de Controle de Atendimento
+# Sistema de Controle de Atendimento - Mobile Tickets
 
 ## Visão Geral
 
