@@ -1,140 +1,154 @@
-# MobileTicketsIonic
-### 
-SISTEMA DE CONTROLE DE ATENDIMENTO
+# Sistema de Controle de Atendimento
 
-INTRODUÇÃO
+## Visão Geral
 
-Sistemas de “tickets” são ferramentas utilizadas para apoiar a gestão do atendimento ao usuário. Também são conhecidos como sistemas de “chamados”, especialmente no contexto de suporte técnico em TI.
+Este projeto consiste no desenvolvimento de um sistema de gerenciamento de filas baseado em tickets (senhas), com foco no atendimento em laboratórios médicos.
 
-Esses sistemas permitem organizar o atendimento por meio de filas, que podem seguir regras de priorização.
+Sistemas desse tipo são amplamente utilizados para organizar o fluxo de atendimento ao usuário, permitindo controle de filas, priorização e rastreabilidade dos atendimentos.
 
-Este documento foi elaborado a partir de uma entrevista conduzida por um Analista de Negócios com um cliente fictício, tendo como objetivo definir os requisitos iniciais para o desenvolvimento de um sistema de gestão de tickets de serviço.
+---
 
-No contexto deste projeto acadêmico, será desenvolvido um aplicativo para controle de atendimento em filas de laboratórios médicos.
+## Agentes do Sistema
 
-AGENTES DO SISTEMA
+O sistema é composto por três tipos de agentes:
 
-O sistema contará com três agentes principais:
+- **AS — Agente Sistema**  
+  Responsável pela emissão de senhas e controle geral do fluxo.
 
-AS – Agente Sistema
-Responsável por emitir senhas e responder aos comandos da atendente.
+- **AA — Agente Atendente**  
+  Responsável por chamar o próximo cliente e realizar o atendimento.
 
-AA – Agente Atendente
-Responsável por chamar o próximo da fila e realizar o atendimento no guichê.
+- **AC — Agente Cliente**  
+  Interage com o totem para emissão de senha e aguarda chamada no painel.
 
-AC – Agente Cliente
-Interage com o totem para emitir sua senha e aguarda ser chamado no painel, onde será informado o guichê de atendimento.
+---
 
-Todos os agentes contribuem para a execução do Serviço de Atendimento (SA).
+## Tipos de Senha
 
-TIPOS DE SENHA
+O sistema trabalha com três categorias de atendimento:
 
-A fila de atendimento será composta por três tipos de senhas:
+- **SP — Senha Prioritária**  
+- **SG — Senha Geral**  
+- **SE — Senha para Retirada de Exames**
 
-SP - Senha Prioritária
-SG - Senha Geral
-SE - Senha para Retirada de Exames
+---
 
-TEMPO MÉDIO DE ATENDIMENTO (TM)
+## Regra de Prioridade
 
-Senha Prioritária (SP):
-Tempo médio: 15 minutos
-Variação: ±5 minutos
-Intervalo: 10 a 20 minutos
-Possui maior prioridade no atendimento.
-
-Senha Geral (SG):
-Tempo médio: 5 minutos
-Variação: ±3 minutos
-Intervalo: 2 a 8 minutos
-Possui menor prioridade no atendimento.
-
-Senha de Exames (SE):
-95% dos atendimentos: até 1 minuto
-5% dos atendimentos: até 5 minutos
-Não possui prioridade formal, mas entra no fluxo após uma SP.
-
-REGRA DE PRIORIDADE
-
-A ordem de atendimento deve seguir a seguinte lógica:
+A ordem de atendimento segue o padrão:
 
 SP → (SE ou SG) → SP → (SE ou SG) → ...
 
-Regras:
 
-* Sempre atender uma SP primeiro, se disponível.
-* Em seguida:
+### Regras:
 
-  * atender uma SE, se existir;
-  * caso contrário, atender uma SG.
-* Nunca repetir o mesmo tipo consecutivamente, se houver outros disponíveis.
+- Sempre atender uma **SP** primeiro, se houver disponível.
+- Em seguida:
+  - atender uma **SE**, se existir;
+  - caso contrário, atender uma **SG**.
+- Evitar repetir o mesmo tipo consecutivamente, quando houver outras opções disponíveis.
 
-GUICHÊS
+---
 
-* Não há especialização de guichês.
-* Qualquer guichê pode atender qualquer tipo de senha.
+## Guichês
 
-SENHAS NÃO ATENDIDAS
+- Não há especialização entre guichês.
+- Qualquer guichê pode atender qualquer tipo de senha.
 
-* 5% das senhas emitidas não são atendidas.
-* Devem ser descartadas.
-* Não geram atendimento.
+---
 
-HORÁRIO DE FUNCIONAMENTO
+## Painel de Chamados
 
-* Início: 07:00
-* Encerramento: 17:00
+O painel deve:
 
-Regras:
+- Exibir as **5 últimas senhas chamadas**.
+- Mostrar:
+  - número da senha
+  - guichê de atendimento
+- **Não exibir** a próxima senha da fila.
 
-* Não é permitido emitir senhas fora do horário.
-* Ao final do expediente, todas as senhas ainda não atendidas devem ser descartadas.
+---
 
-PAINEL DE CHAMADOS
+## Formato da Senha
 
-* Deve exibir as 5 últimas senhas chamadas.
-* Não deve exibir a próxima senha.
-* Deve informar o número da senha e o guichê correspondente.
-
-FORMATO DA SENHA
-
-Cada senha deve seguir o padrão:
+Cada senha segue o padrão:
 
 YYMMDD-PPSQ
 
-Onde:
+### Onde:
 
-YY – Ano da emissão (2 dígitos)
-MM – Mês da emissão (2 dígitos)
-DD – Dia da emissão (2 dígitos)
-PP – Tipo da senha (SP, SG, SE)
-SQ – Sequência por tipo (reinício diário)
+- **YY** — Ano (2 dígitos)  
+- **MM** — Mês (2 dígitos)  
+- **DD** — Dia (2 dígitos)  
+- **PP** — Tipo da senha (SP, SG, SE)  
+- **SQ** — Sequência por tipo (reiniciada diariamente)
 
-RELATÓRIOS
+---
 
-O sistema deve gerar relatórios diários e mensais contendo:
+## Relatórios
 
-* Quantitativo geral de senhas emitidas.
-* Quantitativo geral de senhas atendidas.
-* Quantitativo de senhas emitidas por tipo.
-* Quantitativo de senhas atendidas por tipo.
-* Relatório detalhado contendo:
+O sistema deve gerar um relatório contendo:
 
-  * número da senha
-  * tipo
-  * data e hora de emissão
-  * data e hora de atendimento
-  * guichê responsável
-  * (caso não atendida, campos de atendimento ficam em branco)
-* Relatório de tempo médio de atendimento (TM), considerando variações.
+- Quantidade total de senhas emitidas  
+- Quantidade total de senhas atendidas  
+- Quantidade de senhas emitidas por tipo  
+- Quantidade de senhas atendidas por tipo  
 
-INFRAESTRUTURA
+### Relatório Detalhado
 
-O cliente informa que já possui suporte para:
+Para cada senha:
 
-* Banco de dados MySQL 8.0
-* Backend em Node.js
-* Frontend em React, Angular ou Vue
+- Número da senha  
+- Tipo  
+- Guichê responsável  
 
-Outras tecnologias poderão ser utilizadas, desde que devidamente justificadas.
+> Caso a senha não tenha sido atendida, os campos de atendimento permanecem em branco.
+
+---
+
+## Imagens do projeto
+
+![foto1](assets/foto1.png)
+![foto2](assets/foto2.png)
+![foto3](assets/foto3.png)
+![foto4](assets/foto4.png)
+![foto5](assets/foto5.png)
+
+---
+
+## Ferramentas utilizadas
+
+| Node.js | Angular | Ionic |
+|---------|---------|--------|
+| <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="60"/></div> | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" height="60"/></div> | <div align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg" height="60"/></div> |
+| Node.js | Angular | Ionic Framework |
+
+---
+
+## Como executar o projeto
+
+### Pré-requisitos
+
+Antes de rodar o projeto, tenha instalado:
+
+- Node.js
+- Angular CLI
+- Ionic CLI
+
+---
+
+### Frontend / Aplicação
+
+```bash
+# clonar o repositório
+git clone <URL_DO_REPOSITORIO>
+
+# entrar na pasta
+cd <NOME_DO_PROJETO>
+
+# instalar dependências
+npm install
+
+# rodar o projeto
+ionic serve
 
