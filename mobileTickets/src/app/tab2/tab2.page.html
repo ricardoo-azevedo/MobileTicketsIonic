@@ -18,10 +18,12 @@
         <ion-input type="number" [(ngModel)]="guiche"></ion-input>
       </ion-item>
 
-      <ion-button expand="block" (click)="service.chamarProximo(guiche)">
+      <ion-button expand="block" (click)="chamarSenha()">
         Chamar Próximo
       </ion-button>
-
+<p * ngif="ultimaChamada">
+  
+</p>
     </ion-card-content>
   </ion-card>
 

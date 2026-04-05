@@ -13,7 +13,21 @@ import { SenhasService } from '../services/senhas.service';
 export class Tab2Page {
 
   guiche = 1;
+  ultimaChamada = '';
 
   constructor(public service: SenhasService) {}
 
+  chamarSenha() {
+    this.service.chamarProximo(this.guiche);
+
+    if (this.service.painel.length > 0) {
+      const chamada = this.service.painel[0];
+
+      this.ultimaChamada = `${chamada.codigo} - Guichê ${chamada.guiche}`;
+
+    } else {
+      this.ultimaChamada = 'Nenhuma senha disponível';
+    }
+  }
 }
+
