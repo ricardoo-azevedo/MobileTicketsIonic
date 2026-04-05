@@ -1,6 +1,7 @@
 package com.ricardo.mobileTicketsSpring.services.interfaces;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import com.ricardo.mobileTicketsSpring.dtos.GuicheDto;
@@ -18,5 +19,7 @@ public interface GuicheServiceInterface {
   List<GuicheDto> listar();
 
   void deletarPorId(UUID id);
+
+  Map<String, GuicheDto> mudarStatus(UUID id);
 
 }

@@ -1,6 +1,8 @@
 package com.ricardo.mobileTicketsSpring.services.impls;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -34,7 +36,7 @@ public class GuicheServiceImpl implements GuicheServiceInterface {
 
   @Override
   public GuicheDto salvar(GuicheDto guicheDto) {
-    if (guicheRepository.existsByNome(guicheDto.getNome())){
+    if (guicheRepository.existsByNome(guicheDto.getNome())) {
       throw new RuntimeException("Nome ja existe");
     }
     GuicheModel salvo = guicheRepository.save(toEntity(guicheDto));
@@ -43,7 +45,8 @@ public class GuicheServiceImpl implements GuicheServiceInterface {
 
   @Override
   public GuicheDto editarPorId(GuicheDto guicheDto, UUID id) {
-    GuicheModel guicheModel = guicheRepository.findById(id).orElseThrow(() -> new RuntimeException("Guiche não encontrado!"));
+    GuicheModel guicheModel = guicheRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Guiche não encontrado!"));
 
     guicheModel.setNome(guicheDto.getNome());
     guicheModel.setAtivo(guicheDto.isAtivo());
@@ -53,7 +56,8 @@ public class GuicheServiceImpl implements GuicheServiceInterface {
 
   @Override
   public GuicheDto pesquisarPorId(UUID id) {
-    return guicheRepository.findById(id).map(this::toDto).orElseThrow(() -> new RuntimeException("Guiche não encontrado"));
+    return guicheRepository.findById(id).map(this::toDto)
+        .orElseThrow(() -> new RuntimeException("Guiche não encontrado"));
   }
 
   @Override
@@ -68,8 +72,27 @@ public class GuicheServiceImpl implements GuicheServiceInterface {
 
   @Override
   public void deletarPorId(UUID id) {
-    GuicheModel guicheModel = guicheRepository.findById(id).orElseThrow(() -> new RuntimeException("Guiche não encontrado!"));
+    GuicheModel guicheModel = guicheRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Guiche não encontrado!"));
     guicheRepository.delete(guicheModel);
+  }
+
+  @Override
+  public Map<String, GuicheDto> mudarStatus(UUID id) {
+    GuicheModel guicheModel = guicheRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Guiche não encontrado"));
+
+    GuicheDto antes = toDto(guicheModel);
+    guicheModel.setAtivo(!guicheModel.isAtivo());
+    GuicheModel salvo = guicheRepository.save(guicheModel);
+    GuicheDto depois = toDto(salvo);
+
+    Map<String, GuicheDto> resposta = new HashMap<>();
+
+    resposta.put("antes: ", antes);
+    resposta.put("atualizado: ", depois);
+
+    return resposta;
   }
 
 }

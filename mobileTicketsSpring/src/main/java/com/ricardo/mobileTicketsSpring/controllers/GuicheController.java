@@ -1,6 +1,7 @@
 package com.ricardo.mobileTicketsSpring.controllers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,9 @@ public class GuicheController {
     return ResponseEntity.status(HttpStatus.CREATED).body(guicheSalvo);
   }
 
-
   @PutMapping("/editar-id/{id}")
-  public ResponseEntity<?> editar(@RequestBody @Valid GuicheDto guicheDto, BindingResult bindingResult, @PathVariable UUID id) {
+  public ResponseEntity<?> editar(@RequestBody @Valid GuicheDto guicheDto, BindingResult bindingResult,
+      @PathVariable UUID id) {
     if (bindingResult.hasErrors()) {
       return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
     }
@@ -47,32 +48,37 @@ public class GuicheController {
     return ResponseEntity.status(HttpStatus.OK).body(guicheEditado);
   }
 
-
   @GetMapping("/pesquisar-id/{id}")
-  public ResponseEntity<?> pesquisarId(@PathVariable UUID id){
+  public ResponseEntity<?> pesquisarId(@PathVariable UUID id) {
     GuicheDto resultado = guicheServiceImpl.pesquisarPorId(id);
     return ResponseEntity.ok().body(resultado);
   }
 
-
   @GetMapping("/pesquisar-nome/{nome}")
-  public ResponseEntity<List<?>> buscarNome (@PathVariable String nome){
+  public ResponseEntity<List<?>> buscarNome(@PathVariable String nome) {
     List<GuicheDto> listaAproximada = guicheServiceImpl.pesquisarPorNome(nome);
     return ResponseEntity.ok().body(listaAproximada);
   }
 
-
   @GetMapping
-  public ResponseEntity<List<?>> listar(){
+  public ResponseEntity<List<?>> listar() {
     List<GuicheDto> lista = guicheServiceImpl.listar();
     return ResponseEntity.ok().body(lista);
   }
 
-
   @DeleteMapping("/deletar-id/{id}")
-  public ResponseEntity<?> deletar (@PathVariable UUID id){
+  public ResponseEntity<?> deletar(@PathVariable UUID id) {
     guicheServiceImpl.deletarPorId(id);
     return ResponseEntity.noContent().build();
+  }
+
+  public ResponseEntity<?> mudarStatus(@PathVariable UUID id, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+    }
+    Map<String, GuicheDto> mudando = guicheServiceImpl.mudarStatus(id);
+
+    return ResponseEntity.status(HttpStatus.OK).body(mudando);
   }
 
 }
