@@ -72,7 +72,7 @@ public class GuicheController {
     return ResponseEntity.noContent().build();
   }
 
-  @PutMapping("/mudar-status")
+  @PutMapping("/mudar-status/{id}")
   public ResponseEntity<?> mudarStatus(@PathVariable UUID id, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
