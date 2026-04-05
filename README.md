@@ -147,7 +147,7 @@ Antes de rodar o projeto, tenha instalado:
 git clone https://github.com/ricardoo-azevedo/MobileTicketsIonic.git
 
 # entrar na pasta raiz
-cd MobileTicketIonic/mobileTickets
+cd MobileTicketsIonic/mobileTickets
 
 # instalar dependências
 npm install
