@@ -1,3 +1,7 @@
+[Ir para integrantes do projeto](#integrantes-do-projeto)
+
+---
+
 # Sistema de Controle de Atendimento
 
 ## Visão Geral
@@ -112,7 +116,6 @@ Para cada senha:
 ![foto2](assets/foto2.png)
 ![foto3](assets/foto3.png)
 ![foto4](assets/foto4.png)
-![foto5](assets/foto5.png)
 
 ---
 
@@ -141,14 +144,30 @@ Antes de rodar o projeto, tenha instalado:
 
 ```bash
 # clonar o repositório
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/ricardoo-azevedo/MobileTicketsIonic.git
 
-# entrar na pasta
-cd <NOME_DO_PROJETO>
+# entrar na pasta raiz
+cd MobileTicketIonic/mobileTickets
 
 # instalar dependências
 npm install
 
 # rodar o projeto
 ionic serve
+
+```
+
+--- 
+
+## Integrantes do projeto
+
+#### Grazielle Diniz Marques Araujo - 01831671
+
+#### Adrielly Kauany Pereira dos Santos - 01835056
+
+#### Francileidy Conceição da Silva - 01837744
+
+#### José Ricardo Farias Azevedo - 01834551
+
+### Silvio Matheus da Silva Teixeira- 01831909
 
